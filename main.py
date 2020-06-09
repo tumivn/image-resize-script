@@ -2,6 +2,7 @@ from PIL import Image, ImageOps, ImageFont, ImageDraw
 from os import listdir
 from os.path import isfile, join
 import ntpath
+import sys
 
 
 def resize(input_image, output_image, border, text):
@@ -44,10 +45,19 @@ def resize_images(input_folder, output_folder, text):
     files = [f for f in listdir(input_folder) if isfile(join(input_folder, f)) and f.endswith(".jpg")]
     for f in files:
         resize(f'{input_folder}/{f}', output_image=f'{output_folder}/{path_leaf(f)}', border=44, text=text)
+        print(f + " was resized")
 
 
 if __name__ == '__main__':
-    resize_images("input", "output", "© lê hoàng dũng | tumivn.com")
+    print(sys.argv[1])
+    if sys.argv[1] == "--nosign":
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb-nosign",
+                      "/Users/dunglehoang/resized-photos",
+                      "")
+    else:
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb",
+                      "/Users/dunglehoang/resized-photos",
+                      "© lê hoàng dũng | tumivn.com")
 
 
 
