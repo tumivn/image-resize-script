@@ -49,14 +49,18 @@ def resize_images(input_folder, output_folder, text):
 
 
 if __name__ == '__main__':
-    print(sys.argv[1])
-    if sys.argv[1] == "--nosign":
+    print(len(sys.argv))
+    if len(sys.argv) > 1 and sys.argv[1] == "--nosign":
         resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb-nosign",
-                      "/Users/dunglehoang/resized-photos",
+                      "/Users/dunglehoang/resized-photos/nosign",
                       "")
+    elif len(sys.argv) > 1 and sys.argv[1] == "--jou":
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb-nosign",
+                      "/Users/dunglehoang/resized-photos/jou",
+                      "© Jou Photography")
     else:
         resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb",
-                      "/Users/dunglehoang/resized-photos",
+                      "/Users/dunglehoang/resized-photos/signed",
                       "© lê hoàng dũng | tumivn.com")
 
 
