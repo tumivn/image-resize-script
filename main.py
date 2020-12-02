@@ -41,27 +41,36 @@ def path_leaf(path):
     return tail or ntpath.basename(head)
 
 
-def resize_images(input_folder, output_folder, text):
+def resize_images(input_folder, output_folder, text, border):
     files = [f for f in listdir(input_folder) if isfile(join(input_folder, f)) and f.endswith(".jpg")]
     for f in files:
-        resize(f'{input_folder}/{f}', output_image=f'{output_folder}/{path_leaf(f)}', border=44, text=text)
-        print(f + " was resized")
+        if not isfile(f'{output_folder}/{path_leaf(f)}'):
+            resize(f'{input_folder}/{f}', output_image=f'{output_folder}/{path_leaf(f)}', border=border, text=text)
+            print(f + " was resized")
 
 
 if __name__ == '__main__':
     print(len(sys.argv))
-    if len(sys.argv) > 1 and sys.argv[1] == "--nosign":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb-nosign",
+    if len(sys.argv) > 1 and sys.argv[1] == "--noborder":
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
+                      "/Users/dunglehoang/resized-photos/noborder",
+                      "", 0)
+    elif len(sys.argv) > 1 and sys.argv[1] == "--nosign":
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
                       "/Users/dunglehoang/resized-photos/nosign",
-                      "")
+                      "", 44)
+    elif len(sys.argv) > 1 and sys.argv[1] == "--jounosign":
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb-j",
+                      "/Users/dunglehoang/resized-photos/x-nosign",
+                      "", 44)
     elif len(sys.argv) > 1 and sys.argv[1] == "--jou":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb-nosign",
-                      "/Users/dunglehoang/resized-photos/jou",
-                      "© Jou Photography")
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb-j",
+                      "/Users/dunglehoang/resized-photos/x-signed",
+                      "© Jou Photography", 44)
     else:
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/_processed/___new-export/srgb",
+        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
                       "/Users/dunglehoang/resized-photos/signed",
-                      "© lê hoàng dũng | tumivn.com")
+                      "© lê hoàng dũng | tumivn.com", 44)
 
 
 
