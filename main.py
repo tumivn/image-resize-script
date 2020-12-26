@@ -67,6 +67,8 @@ if __name__ == '__main__':
         resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb-j",
                       "/Users/dunglehoang/resized-photos/x-signed",
                       "© Jou Photography", 44)
+    elif len(sys.argv) > 1 and sys.argv[1] == "--help":
+        print("Options: no param, noborder, nosign, jounosign, jou, help")
     else:
         resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
                       "/Users/dunglehoang/resized-photos/signed",
