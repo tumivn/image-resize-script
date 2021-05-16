@@ -19,7 +19,7 @@ def resize(input_image, output_image, border, text):
         bimg = ImageOps.expand(img, border=border)
 
         if text:
-            fontSize =30
+            fontSize = 30
             draw = ImageDraw.Draw(bimg)
             # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("arial.ttf", fontSize)
@@ -51,28 +51,31 @@ def resize_images(input_folder, output_folder, text, border):
 
 if __name__ == '__main__':
     print(len(sys.argv))
+    exportPath = "F:/_pictures/_export/"
+    resizePath = "F:/_pictures/_resized-photos/"
     if len(sys.argv) > 1 and sys.argv[1] == "--noborder":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
-                      "/Users/dunglehoang/resized-photos/noborder",
+        resize_images(exportPath + "srgb",
+                      resizePath + "noborder",
+                      "", 0)
+    elif len(sys.argv) > 1 and sys.argv[1] == "--jounoborder":
+        resize_images(exportPath + "x-srgb",
+                      resizePath + "x-noborder",
                       "", 0)
     elif len(sys.argv) > 1 and sys.argv[1] == "--nosign":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
-                      "/Users/dunglehoang/resized-photos/nosign",
+        resize_images(exportPath + "srgb",
+                      resizePath + "nosign",
                       "", 44)
     elif len(sys.argv) > 1 and sys.argv[1] == "--jounosign":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb-j",
-                      "/Users/dunglehoang/resized-photos/x-nosign",
+        resize_images(exportPath + "srgb-j",
+                      resizePath + "x-nosign",
                       "", 44)
     elif len(sys.argv) > 1 and sys.argv[1] == "--jou":
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb-j",
-                      "/Users/dunglehoang/resized-photos/x-signed",
+        resize_images(exportPath + "srgb-j",
+                      resizePath + "x-signed",
                       "© Jou Photography", 44)
     elif len(sys.argv) > 1 and sys.argv[1] == "--help":
-        print("Options: no param, noborder, nosign, jounosign, jou, help")
+        print("Options: no param, noborder, nosign, jounosign, jounoborder, jou, help")
     else:
-        resize_images("/Users/dunglehoang/Google Drive/_pictures/___new-export/srgb",
-                      "/Users/dunglehoang/resized-photos/signed",
+        resize_images(exportPath + "srgb",
+                      resizePath + "signed",
                       "© lê hoàng dũng | tumivn.com", 44)
-
-
-
